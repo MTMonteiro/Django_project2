@@ -1,0 +1,52 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SCIFI 2.0</title>
+    {% bootstrap_css %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h1>APS TABLE</h1>
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">AP</th>
+                    <th scope="col">Modelo</th>
+                     <th scope="col">Canal</th>
+                  </tr>
+            </thead>
+            <tbody>
+                {% for dv in aps %}
+                <tr onclick=location.'href="#modal{{dv.ap}}" data-toggle="modal"'>
+                    <td><a href="#modal{{ dv.ap }}" data-toggle="modal">{{ dv.ap }}</a></td>
+                    <td>{{ dv.modelo }}</td>
+                    <td>{{ dv.canal }}</td>
+                </tr>
+                <div class="modal fade bd-example-modal-lg show" id="modal{{dv.ap }}" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                            </div>
+                             <div class="modal-body" id="dynamic-content">
+                                <img src="{{ dv.image.url }}" class="img-fluid" alt="{{ dv.ap }}"/>
+                             </div>
+                        </div>
+                     </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'aps' %}" class="btn btn-primary btn-lg btn-block" role="button">Registrar AP</a>
+    </div>
+    {% bootstrap_javascript jquery='full' %}
+
+</body>
+</html>
