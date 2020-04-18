@@ -11,12 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+#heroku db
 import dj_database_url
 
-#usando postgresql com heroku
-DATABASES = {
-    'default': dj_database_url.config()
-}
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -84,6 +81,13 @@ WSGI_APPLICATION = 'django2.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 """
+#usando postgresql com heroku
+DATABASES = {
+    'default': dj_database_url.config()
+}
+"""
+
+
 #heroku nao da suporte ao mysql, apenas ao postgre
 DATABASES = {
     'default': {
@@ -95,7 +99,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
